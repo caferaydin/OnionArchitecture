@@ -12,7 +12,7 @@ using xProject.Persistence.Contexts;
 namespace xProject.Persistence.Migrations
 {
     [DbContext(typeof(MsSqlxProjectContext))]
-    [Migration("20230630170547_mig_1")]
+    [Migration("20230630234318_mig_1")]
     partial class mig_1
     {
         /// <inheritdoc />
@@ -46,8 +46,17 @@ namespace xProject.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -63,8 +72,14 @@ namespace xProject.Persistence.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<Guid>("CustomerId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -79,8 +94,8 @@ namespace xProject.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("CustomerId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -91,9 +106,10 @@ namespace xProject.Persistence.Migrations
                     b.Property<int>("Stock")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
 
-                    b.HasIndex("CustomerId");
+                    b.HasKey("Id");
 
                     b.ToTable("Products");
                 });
@@ -122,18 +138,6 @@ namespace xProject.Persistence.Migrations
                         .IsRequired();
 
                     b.Navigation("Customer");
-                });
-
-            modelBuilder.Entity("xProject.Domain.Concrete.Product", b =>
-                {
-                    b.HasOne("xProject.Domain.Concrete.Customer", null)
-                        .WithMany("Products")
-                        .HasForeignKey("CustomerId");
-                });
-
-            modelBuilder.Entity("xProject.Domain.Concrete.Customer", b =>
-                {
-                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }
