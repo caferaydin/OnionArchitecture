@@ -7,11 +7,9 @@ using xProject.Domain.Concrete.Base;
 
 namespace xProject.Domain.Concrete
 {
-    public class Product : BaseEntity
+    public class Category : BaseEntity
     {
         public string? Name { get; set; }
-        public int Stock { get; set; }
-        public double Price { get; set; }
-        public ICollection<Order>? Orders { get; set; } // ManyToMany
+        public Guid CategoryId { get; set; }
     }
 }

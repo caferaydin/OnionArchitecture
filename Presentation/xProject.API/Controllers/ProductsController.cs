@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq.Expressions;
 using xProject.Application.Abstract.Repositoriy.ReadRepository;
 using xProject.Application.Abstract.Repositoriy.WriteRepository;
+using xProject.Domain.Concrete;
 
 namespace xProject.API.Controllers
 {
@@ -19,21 +21,11 @@ namespace xProject.API.Controllers
         }
 
         [HttpGet("getAll")]
-        public IActionResult Get()
+        public IActionResult GetAll()
         {
             IQueryable product =  _readRepository.GetAll();
             return Ok(product);
         }
 
-        [HttpGet]
-        public async Task GetAddProductRange()
-        {
-            await _writeRepository.AddRangeAsync(new(){
-                new() {Id= Guid.NewGuid(), Name = "Product 1", Stock=10, Price=500,  CreatedAt= DateTime.UtcNow, UpdatedAt = DateTime.UtcNow},
-                new() {Id= Guid.NewGuid(), Name = "Product 2", Stock=15, Price=600,  CreatedAt= DateTime.UtcNow, UpdatedAt = DateTime.UtcNow},
-                new() {Id= Guid.NewGuid(), Name = "Product 3", Stock=20, Price=800,  CreatedAt= DateTime.UtcNow, UpdatedAt= DateTime.UtcNow }
-            });
-            await _writeRepository.SaveAsync();
-        }
     }
 }
