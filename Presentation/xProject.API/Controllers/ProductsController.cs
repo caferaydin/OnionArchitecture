@@ -11,21 +11,27 @@ namespace xProject.API.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        readonly private IProductWriteRepository _writeRepository;
-        readonly private IProductReadRepository _readRepository;
+        private readonly IProductWriteRepository _writeRepository;
+        private readonly IProductReadRepository _readRepository;
 
-        public ProductsController(IProductWriteRepository writeRepository, IProductReadRepository readRepository)
+        public ProductsController(IProductWriteRepository writeRepository, IProductReadRepository readRepository, )
         {
             _writeRepository = writeRepository;
             _readRepository = readRepository;
+            
         }
 
         [HttpGet("getAll")]
         public IActionResult GetAll()
         {
-            IQueryable product =  _readRepository.GetAll();
-            return Ok(product);
+            return Ok(_readRepository.GetAll());
         }
+        public async Task<IActionResult> AddProduct(Product product)
+        {
+            return Ok(_writeRepository.AddAsync(product));
+        }
+
+
 
     }
 }

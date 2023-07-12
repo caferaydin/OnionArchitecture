@@ -11,6 +11,6 @@ namespace xProject.Domain.Concrete
     {
         public string? Address { get; set; }
         public ICollection<Product>? Products { get; set; } // ManyToMany
-        public Customer Customer { get; set; }
+        public Customer Customer { get; set; } // 
     }
 }
