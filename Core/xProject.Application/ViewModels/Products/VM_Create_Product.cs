@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using xProject.Domain.Concrete.Base;
 
-namespace xProject.Domain.Concrete
+namespace xProject.Application.ViewModels.Products
 {
-    public class Product : BaseEntity
+    public class VM_Create_Product
     {
         public string? Name { get; set; }
         public int Stock { get; set; }
         public float Price { get; set; }
-        public ICollection<Order>? Orders { get; set; } // ManyToMany
     }
 }

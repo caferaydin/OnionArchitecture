@@ -25,6 +25,7 @@ namespace xProject.Persistence.Contexts
                 {
                     EntityState.Added => data.Entity.CreatedAt = DateTime.UtcNow,
                     EntityState.Modified => data.Entity.UpdatedAt = DateTime.UtcNow,
+                    _ => DateTime.UtcNow
                 };
             }
             return await base.SaveChangesAsync(cancellationToken);

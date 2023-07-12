@@ -12,7 +12,7 @@ using xProject.Persistence.Contexts;
 namespace xProject.Persistence.Migrations
 {
     [DbContext(typeof(MsSqlxProjectContext))]
-    [Migration("20230630234318_mig_1")]
+    [Migration("20230712151710_mig_1")]
     partial class mig_1
     {
         /// <inheritdoc />
@@ -100,8 +100,8 @@ namespace xProject.Persistence.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("Price")
-                        .HasColumnType("bigint");
+                    b.Property<float>("Price")
+                        .HasColumnType("real");
 
                     b.Property<int>("Stock")
                         .HasColumnType("int");
