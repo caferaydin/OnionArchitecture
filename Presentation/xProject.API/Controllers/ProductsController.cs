@@ -37,6 +37,10 @@ namespace xProject.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(VM_Create_Product product)
         {
+            if(ModelState.IsValid)
+            {
+
+            }
             await _writeRepository.AddAsync(new()
             {
                 Name = product.Name,

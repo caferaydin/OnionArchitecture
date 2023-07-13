@@ -1,3 +1,6 @@
+using FluentValidation.AspNetCore;
+using xProject.Application.Validators.Products;
+using xProject.Infrastructure.Filters;
 using xProject.Persistence.DependencyResolvers;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,9 +14,12 @@ builder.Services.AddCors(options => options.AddDefaultPolicy(policy =>
     .AllowAnyHeader().AllowAnyMethod()
     )) ;
 
-// Added - End
 
-builder.Services.AddControllers();
+// Validation
+builder.Services.AddControllers( option=> option.Filters.Add<ValidationFilter>())
+    .AddFluentValidation(configuration => configuration.RegisterValidatorsFromAssemblyContaining<CreateProductValidator>());
+
+// Added - End
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
